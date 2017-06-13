@@ -1,0 +1,22 @@
+version: '2'
+
+services:
+  whoami:
+    image: "rancher/server:${RANCHER_SERVER_VERSION}"
+    container_name: "rancher-server"
+    expose:
+      - "8080"
+    volumes:
+      - "./volumes/mysql:/var/lib/mysql"
+    restart: "unless-stopped"
+    environment:
+      - "VIRTUAL_HOST=${VIRTUAL_HOST}"
+      - "LETSENCRYPT_HOST=${LETSENCRYPT_HOST}"
+      - "LETSENCRYPT_EMAIL=${LETSENCRYPT_EMAIL}"
+    networks:
+      - "nginx-network"
+
+networks:
+  nginx-network:
+    external:
+      name: "nginx-network"
