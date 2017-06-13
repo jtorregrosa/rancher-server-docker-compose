@@ -5,7 +5,7 @@ services:
     image: "rancher/server:${RANCHER_SERVER_VERSION}"
     container_name: "rancher-server"
     expose:
-      - "8080"
+      - 8080
     volumes:
       - "./volumes/mysql:/var/lib/mysql"
     restart: "unless-stopped"
